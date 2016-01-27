@@ -59,8 +59,8 @@ $(function () {
         it('Change when menu icon is clicked', function () {
             $('a.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).toBeFalsy();
-            $('.menu-icon-link').click();
-            expect($("body").hasClass('menu-hidden')).toBeTruthy();
+            $('.menu-icon-link').trigger('click');
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
         });
     });
     /* Created test suite named "Initial Entries" */
@@ -75,7 +75,9 @@ $(function () {
             loadFeed(0, done);
         });
         it('Contain entry elements', function (done) {
-            var entries = $('.entry');
+            var entries = $('.feed > .entry-link');
+            //console.log($('.feed > .entry').html());   ---> undefined
+            //console.log($('.feed > .entry-link').html()); ---> first element
             expect(entries.length).not.toBe(0);
             done();
         });
